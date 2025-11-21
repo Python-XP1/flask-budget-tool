@@ -1,0 +1,190 @@
+# German translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-08-17 13:37+0200\n"
+"PO-Revision-Date: 2025-08-17 12:47+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: app.py:88 app.py:105
+msgid ""
+"Ungültiger Zeitraum: Zwischen Start- und Endtag müssen mindestens 7 Tage "
+"liegen."
+msgstr ""
+"Ungültiger Zeitraum: Zwischen Start- und Endtag müssen mindestens 7 Tage "
+"liegen."
+
+#: app.py:92
+msgid "Starttag gespeichert."
+msgstr "Starttag gespeichert."
+
+#: app.py:109
+msgid "Endtag gespeichert."
+msgstr "Endtag gespeichert."
+
+#: app.py:145
+msgid "Ungültige Währung."
+msgstr ""
+
+#: app.py:149
+#, fuzzy
+msgid "Währung gespeichert."
+msgstr "Endtag gespeichert."
+
+#: templates/index.html:5
+msgid "Budget Tracker"
+msgstr "Budget-Tracker"
+
+#: templates/index.html:15
+msgid "Sprache / Language"
+msgstr "Sprache / Language"
+
+#: templates/index.html:17
+msgid "Deutsch"
+msgstr "Deutsch"
+
+#: templates/index.html:18
+msgid "Englisch"
+msgstr "Englisch"
+
+#: templates/index.html:24
+msgid "Budget-Tracker"
+msgstr "Budget-Tracker"
+
+#: templates/index.html:26
+msgid "Neues Wochenbudget in:"
+msgstr "Neues Wochenbudget in:"
+
+#: templates/index.html:27
+msgid "T"
+msgstr "T"
+
+#: templates/index.html:27
+msgid "h"
+msgstr "h"
+
+#: templates/index.html:27
+msgid "min"
+msgstr "min"
+
+#: templates/index.html:35 templates/index.html:100
+msgid "Monatsbudget"
+msgstr "Monatsbudget"
+
+#: templates/index.html:38 templates/index.html:53 templates/index.html:68
+#: templates/index.html:81
+msgid "Speichern"
+msgstr "Speichern"
+
+#: templates/index.html:44
+msgid "Währung"
+msgstr ""
+
+#: templates/index.html:61
+msgid "Starttag des Monats"
+msgstr "Starttag des Monats"
+
+#: templates/index.html:74
+msgid "Endtag des Monats"
+msgstr "Endtag des Monats"
+
+#: templates/index.html:106
+msgid "Tagesbudget"
+msgstr "Tagesbudget"
+
+#: templates/index.html:110
+msgid "Länge des Budget-Zeitraums"
+msgstr "Länge des Budget-Zeitraums"
+
+#: templates/index.html:110
+msgid "Tage"
+msgstr "Tage"
+
+#: templates/index.html:117
+msgid "Wochenbudget"
+msgstr "Wochenbudget"
+
+#: templates/index.html:118
+msgid "Ausgegeben"
+msgstr "Ausgegeben"
+
+#: templates/index.html:119
+msgid "Verbleibend"
+msgstr "Verbleibend"
+
+#: templates/index.html:121
+msgid "Übertrag aus Vorwoche"
+msgstr "Übertrag aus Vorwoche"
+
+#: templates/index.html:127
+msgid "Übertrag durchgeführt am"
+msgstr "Übertrag durchgeführt am"
+
+#: templates/index.html:134
+#, fuzzy
+msgid "Betrag"
+msgstr "Betrag (€)"
+
+#: templates/index.html:138
+msgid "Beschreibung"
+msgstr "Beschreibung"
+
+#: templates/index.html:143
+msgid ""
+"Betrag konnte nicht gelesen werden. Bitte nur Zahlen verwenden (z. B. "
+"12.50)."
+msgstr ""
+"Betrag konnte nicht gelesen werden. Bitte nur Zahlen verwenden (z. B. "
+"12.50)."
+
+#: templates/index.html:146
+msgid "Ausgabe hinzufügen"
+msgstr "Ausgabe hinzufügen"
+
+#: templates/index.html:152
+msgid "Letzte Ausgaben (diese Woche)"
+msgstr "Letzte Ausgaben (diese Woche)"
+
+#: templates/index.html:163
+msgid "Eintrag löschen"
+msgstr "Eintrag löschen"
+
+#: templates/index.html:173
+msgid "Wartung & Aufräumen"
+msgstr "Wartung & Aufräumen"
+
+#: templates/index.html:177
+msgid "Keine Ausgaben vorhanden."
+msgstr "Keine Ausgaben vorhanden."
+
+#: templates/index.html:182
+msgid "Alle Ausgaben wirklich löschen?"
+msgstr "Alle Ausgaben wirklich löschen?"
+
+#: templates/index.html:183
+msgid "Ausgaben löschen"
+msgstr "Ausgaben löschen"
+
+#: templates/index.html:187
+msgid "Alle Budgets/Einstellungen zurücksetzen?"
+msgstr "Alle Budgets/Einstellungen zurücksetzen?"
+
+#: templates/index.html:188
+msgid "Alle Budgets löschen"
+msgstr "Alle Budgets löschen"
+
+#~ msgid "Monatsbudget (€)"
+#~ msgstr "Monatsbudget (€)"
+

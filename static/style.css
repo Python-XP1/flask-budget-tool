@@ -1,0 +1,265 @@
+/* ---- Base / Reset ------------------------------------------------------- */
+:root{
+  --bg: #0e0f13;
+  --panel: #14161c;
+  --panel-2: #101218;
+  --text: #e7eaf0;
+  --muted: #9aa3b2;
+  --accent: #32d583;
+  --danger: #ff6b6b;
+  --border: #232733;
+  --shadow: 0 8px 24px rgba(0,0,0,.35);
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+/* ---- Seite zentrieren, max. Breite ------------------------------------- */
+:is(main, .container, .wrapper, .content, #app, #content){
+  width: 100%;
+  max-width: 880px;
+  margin-inline: auto;
+  padding: clamp(16px, 2vw, 24px);
+}
+
+header, .page-title { margin: 8px 0 16px; text-align: center;}
+
+/* ---- „Karten“/Sektionen ------------------------------------------------- */
+section, .card, .panel, .box{
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  margin: 16px 0;
+}
+
+section.dark, .panel--sub { background: var(--panel-2); }
+
+/* ---- Typografie --------------------------------------------------------- */
+h1,h2,h3{ line-height: 1.2; margin: 0 0 10px }
+h1{ font-size: clamp(22px, 3.2vw, 28px); }
+h2{ font-size: clamp(18px, 2.4vw, 22px); }
+.label, label, .hint{ color: var(--muted); font-size: .95rem; }
+
+/* ---- Tabellen / Zusammenfassungsbox ------------------------------------ */
+.summary, .stats, .totals{
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+}
+@media (min-width: 900px){
+  .summary, .stats, .totals{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+}
+.summary .item, .stat, .total{
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.good, .pos  { color: var(--accent); }
+.bad,  .neg  { color: var(--danger); }
+
+/* ---- Formulare ---------------------------------------------------------- */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select,
+textarea{
+  width: 100%;
+  border: 1px solid var(--border);
+  background: #0b0d12;
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 12px;
+  outline: none;
+}
+input::placeholder, textarea::placeholder{ color: #7c8596; }
+
+.form-row{
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 900px){
+  .form-row--2 { grid-template-columns: 180px 1fr; align-items: center; }
+  .form-row--3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---- Buttons ------------------------------------------------------------ */
+button, .btn, input[type="submit"]{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5ch;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: #1f2430;
+  color: var(--text);
+  cursor: pointer;
+  transition: transform .05s ease, background .2s ease, border-color .2s ease;
+}
+button:hover, .btn:hover{ background: #262c3a; }
+button:active, .btn:active{ transform: translateY(1px); }
+
+.btn--primary{ background: var(--accent); color: #08130d; border-color: #25b86b; }
+.btn--danger { background: #3a1f24; color: #ffd5d5; border-color: #62343c; }
+.btn--ghost  { background: transparent; border-color: var(--border); }
+
+/* Wartungs-/Gold-Buttons (dezenteres Gelb) */
+.btn-warning{
+  background-color: #c59f3a;   /* wärmeres, dunkleres Gold */
+  color: #000;
+  border: 1px solid rgba(255,255,255,.05);
+}
+.btn-warning:hover{
+  background-color: #d4ad46;   /* leichte Aufhellung beim Hover */
+  color: #000;
+  border-color: #e0c070;
+}
+
+/* Button-Toolbar */
+.toolbar{ display: grid; gap: 10px; margin-top: 10px; }
+@media (min-width: 900px){
+  .toolbar{ grid-auto-flow: column; justify-content: end; }
+}
+
+/* ---- Listen / Tabellen -------------------------------------------------- */
+table{
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+th, td{ padding: 10px 12px; border-bottom: 1px solid var(--border); }
+th{ text-align: left; color: var(--muted); font-weight: 600; }
+tr:last-child td{ border-bottom: 0; }
+
+/* ---- Hilfsmittel -------------------------------------------------------- */
+.stack { display: grid; gap: 12px; }
+.grid-2{ display: grid; gap: 12px; grid-template-columns: repeat(2,1fr); }
+@media (max-width: 640px){ .grid-2{ grid-template-columns: 1fr; } }
+
+/* ---- Scrollbar ---------------------------------------------------------- */
+::-webkit-scrollbar{ height: 10px; width: 10px; }
+::-webkit-scrollbar-thumb{ background: #2a2f3b; border-radius: 8px; }
+
+/* ==== Wartungsbereich: gleich große Buttons + Abstand ==================== */
+.maintenance form + form{ margin-top: 12px; }
+.maintenance button,
+.maintenance .btn{
+  width: 100% !important;
+  height: 44px;
+}
+
+.maintenance{
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.maint-header{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.maint-icon{ font-size: 1.1rem }
+.maint-title{ margin: 0; font-size: clamp(18px, 2.4vw, 22px); }
+
+.stack-md{ display: grid; gap: 14px; }
+.btn--block{ width: 100%; }
+
+/* Einheitliches dezentes Rot für alle Wartungsbuttons */
+.btn--soft-danger,
+.btn--destructive {
+  background: #2a1f23;
+  color: #ffd5d5;
+  border: 1px solid #5a2a31;
+}
+.btn--soft-danger:hover,
+.btn--destructive:hover {
+  background: #332129;
+  border-color: #7a3640;
+}
+
+.maint-hint{ color: var(--muted); font-size: .95rem; margin-bottom: 8px; }
+
+/* Sanfter Einstieg für jede Ausgaben-Zeile */
+.entry {
+  opacity: 0;
+  transform: translateY(4px);
+  animation: entry-in .25s ease-out forwards;
+}
+
+/* Kurzes Ausblenden beim Löschen */
+.entry.is-removing {
+  animation: entry-out .18s ease-in forwards;
+}
+
+@keyframes entry-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes entry-out {
+  to { opacity: 0; transform: translateY(-2px); }
+}
+
+/* Respektiert Systemeinstellung “Bewegung reduzieren” */
+@media (prefers-reduced-motion: reduce) {
+  .entry { animation: none; opacity: 1; transform: none; }
+  .entry.is-removing { animation: none; }
+}
+
+/* Neu hinzugefügte Einträge kurz hervorheben */
+.entry.new-entry {
+  animation: highlightFade 1.6s ease-out forwards;
+}
+
+@keyframes highlightFade {
+  0%   { background-color: rgba(50, 213, 131, 0.25); } /* sanftes Grün */
+  100% { background-color: transparent; }
+}
+
+/* === Language switch (centered) ========================================= */
+.language-switch {
+  text-align: center;
+  padding-top: 6px;
+  padding-bottom: 10px;
+}
+
+.language-switch h3 {
+  margin: 0 0 10px;
+}
+
+.lang-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Button-Stil für Flaggenlinks (erbt Basis-Button-Optik) */
+a.btn-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: .6ch;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #1f2430;
+  color: var(--text);
+  text-decoration: none;
+  transition: transform .05s ease, background .2s ease, border-color .2s ease;
+}
+a.btn-flag:hover { background: #262c3a; }
+a.btn-flag:active { transform: translateY(1px); }

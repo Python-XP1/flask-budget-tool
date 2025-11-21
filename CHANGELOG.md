@@ -1,0 +1,91 @@
+# 📜 Changelog – Flask Budget Tool
+
+Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokumentiert.  
+Das Format orientiert sich an [Keep a Changelog](https://keepachangelog.com/) und [Semantic Versioning](https://semver.org/).
+
+All notable changes to this project will be documented in this file.  
+The format is based on [Keep a Changelog](https://keepachangelog.com/) and [Semantic Versioning](https://semver.org/).
+
+---
+
+## [0.9.3] – 2025-08-17 *(Patreon Exclusive)*
+
+### Added
+- [DE] Mehrsprachigkeit (Deutsch & Englisch) mit Babel, `.po`- und `.mo`-Dateien  
+  [EN] Multilanguage support (German & English) using Babel with `.po` and `.mo` files
+- [DE] Neues Dropdown für Währungsauswahl (€, $, £ usw.)  
+  [EN] New currency selection dropdown (€, $, £ etc.)
+- [DE] Zweisprachiger Changelog für internationale Nutzer  
+  [EN] Bilingual changelog for international users
+- [DE] Ordnerstruktur optimiert: `instance/` für DB, `logs/` für Logs, `translations/` für Sprachdateien  
+  [EN] Optimized folder structure: `instance/` for DB, `logs/` for logs, `translations/` for translations
+
+### Changed
+- [DE] Projektordner vereinheitlicht: `flask-budget-toolV0.9.3/` → `flask-budget-tool/`  
+  [EN] Project folder unified: `flask-budget-toolV0.9.3/` → `flask-budget-tool/`
+- [DE] Klare Trennung zwischen Code, Templates, Static Files und Daten  
+  [EN] Clean separation between code, templates, static files, and data
+
+### Fixed
+- [DE] Übersetzungsprobleme bei Strings (z. B. „Betrag“, „Währung“) behoben  
+  [EN] Fixed translation issues with some strings (e.g. "Amount", "Currency")
+- [DE] Flash-Meldungen jetzt in beiden Sprachen korrekt  
+  [EN] Flash messages now correctly translated in both languages
+- [DE] Kleinere Layout-Inkonsistenzen gefixt  
+  [EN] Fixed minor layout inconsistencies
+
+---
+
+## [0.9.2] – 2025-08-15 *(Patreon Exclusive)*
+
+### Added
+- [DE] Zentrierte Hauptüberschrift und Countdown für klarere Darstellung  
+  [EN] Centered main header and countdown for clearer presentation
+- [DE] Farb- und Stil-Optimierungen für bessere Lesbarkeit  
+  [EN] Color and style optimizations for improved readability
+- [DE] Einheitlicher Button-Style (Soft-Danger & Ghost-Buttons)  
+  [EN] Unified button style (soft-danger & ghost buttons)
+- [DE] Verbesserte Abstände und Layout für Komfort  
+  [EN] Improved spacing and layout for usability
+
+### Changed
+- [DE] Farbschema verfeinert, Buttons & Warnungen konsistenter  
+  [EN] Refined color scheme, buttons & alerts more consistent
+- [DE] Wartungs- und Löschaktionen optisch hervorgehoben  
+  [EN] Maintenance and delete actions visually emphasized
+
+### Fixed
+- [DE] Ausrichtung von Überschrift und Countdown korrigiert  
+  [EN] Fixed alignment of header and countdown
+- [DE] Kleinere CSS-Fehler behoben  
+  [EN] Fixed minor CSS issues
+
+---
+
+## [0.9.0] – 2025-08-13
+
+### Added
+- [DE] Monatsbudget-Logik mit frei wählbarem Start- und Endtag  
+  [EN] Monthly budget logic with freely selectable start and end date
+- [DE] Wochenreset (montags) mit Vorwochen-Übertrag  
+  [EN] Weekly reset (Mondays) with previous week carryover
+- [DE] Weboberfläche mit Bootstrap-Design  
+  [EN] Web interface with Bootstrap design
+- [DE] Hilfsfunktionen ausgelagert in `utils/functions.py`  
+  [EN] Utility functions outsourced to `utils/functions.py`
+- [DE] `requirements.txt` für Setup hinzugefügt  
+  [EN] `requirements.txt` added for easy setup
+- [DE] Erste README.md & MIT-Lizenz hinzugefügt  
+  [EN] First README.md & MIT license added
+
+### Changed
+- [DE] Code-Struktur in `app.py`, `init_db.py` und `utils/` verbessert  
+  [EN] Improved code structure in `app.py`, `init_db.py`, and `utils/`
+- [DE] Projektordner für GitHub-Release vorbereitet  
+  [EN] Project folder prepared for GitHub release
+
+### Fixed
+- [DE] Bug bei Wochenstartberechnung behoben  
+  [EN] Fixed bug in weekly reset calculation
+- [DE] Fehlerhafte Anzeige beim Restbudget-Übertrag gefixt  
+  [EN] Fixed incorrect display of budget carryover

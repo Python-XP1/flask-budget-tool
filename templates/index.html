@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="{{ current_lang }}">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ _('Budget Tracker') }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <main class="content">
+
+    <!-- Language Switch -->
+    <section class="language-switch">
+      <h3>{{ _('Sprache / Language') }}</h3>
+      <div class="lang-buttons">
+        <a class="btn-flag" href="{{ url_for('index') }}?lang=de">🇩🇪 {{ _('Deutsch') }}</a>
+        <a class="btn-flag" href="{{ url_for('index') }}?lang=en">🇬🇧 {{ _('Englisch') }}</a>
+      </div>
+    </section>
+
+    <!-- Titel & Countdown -->
+    <header class="page-title">
+      <h1 class="monospace">🧮 {{ _('Budget-Tracker') }}</h1>
+      <div class="countdown">
+        📅 <strong>{{ _('Neues Wochenbudget in:') }}</strong><br>
+        {{ countdown_days }} {{ _('T') }}, {{ countdown_hours }} {{ _('h') }}, {{ countdown_minutes }} {{ _('min') }}
+      </div>
+    </header>
+
+    <!-- Monatsbudget + Währung -->
+    <section>
+      <!-- Monatsbudget -->
+      <form method="post" action="{{ url_for('update_budget') }}" class="stack">
+        <label for="monatsbudget" class="label">📅 {{ _('Monatsbudget') }} ({{ currency }}):</label>
+        <div class="grid-2">
+          <input type="number" step="0.01" name="monatsbudget" required />
+          <button type="submit" class="btn btn--ghost">💾 {{ _('Speichern') }}</button>
+        </div>
+      </form>
+
+      <!-- Währungsauswahl -->
+      <form method="post" action="{{ url_for('update_currency') }}" class="form-row form-row--2" style="margin-top:12px">
+        <label for="currency" class="label">💱 {{ _('Währung') }}:</label>
+        <div class="grid-2">
+          <select name="currency" id="currency">
+            {% for iso, sym in currency_choices %}
+              <option value="{{ iso }}" {% if sym == currency %}selected{% endif %}>
+                {{ iso }} ({{ sym }})
+              </option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="btn btn--ghost">💾 {{ _('Speichern') }}</button>
+        </div>
+      </form>
+
+      <!-- Start-/Endtag -->
+      <div class="toolbar">
+        <!-- Starttag -->
+        <form method="post" action="{{ url_for('update_startday') }}" class="form-row form-row--2">
+          <label for="start_day" class="label">📆 {{ _('Starttag des Monats') }}:</label>
+          <div class="grid-2">
+            <select name="start_day" id="start_day">
+              {% for day in range(1, 32) %}
+                <option value="{{ day }}" {% if day == start_day %}selected{% endif %}>{{ day }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit" class="btn btn--ghost">💾 {{ _('Speichern') }}</button>
+          </div>
+        </form>
+
+        <!-- Endtag -->
+        <form method="post" action="{{ url_for('update_endday') }}" class="form-row form-row--2">
+          <label for="end_day" class="label">🏁 {{ _('Endtag des Monats') }}:</label>
+          <div class="grid-2">
+            <select name="end_day" id="end_day">
+              {% for day in range(1, 32) %}
+                <option value="{{ day }}" {% if day == end_day %}selected{% endif %}>{{ day }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit" class="btn btn--ghost">💾 {{ _('Speichern') }}</button>
+          </div>
+        </form>
+      </div>
+
+      {% with msgs = get_flashed_messages(with_categories=true) %}
+        {% if msgs %}
+          <div class="alerts">
+            {% for cat, msg in msgs %}
+              <div class="alert {% if cat == 'error' %}error{% else %}success{% endif %}">{{ msg }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+    </section>
+
+    <!-- Anzeige Budget / Tagesbudget -->
+    <section>
+      <h3 class="monospace">
+        📅 {{ _('Monatsbudget') }} ({{ monatsrange }}):
+        <span class="{% if monatsbudget >= 0 %}pos{% else %}neg{% endif %} value">
+          {{ monatsbudget }} {{ currency }}
+        </span>
+      </h3>
+      <p class="hint" style="margin-top:-4px">
+        💡 {{ _('Tagesbudget') }}:
+        <strong class="value {% if tagesbudget >= 10 %}pos{% elif tagesbudget >= 5 %} {% else %}neg{% endif %}">
+          {{ tagesbudget }} {{ currency }}
+        </strong>
+        · 🔎 {{ _('Länge des Budget-Zeitraums') }}: {{ tage_gesamt }} {{ _('Tage') }}
+      </p>
+    </section>
+
+    <!-- Wochenzusammenfassung -->
+    <section>
+      <div class="summary">
+        <div class="item"><strong>{{ _('Wochenbudget') }}:</strong> <span class="value">{{ wochenbudget }} {{ currency }}</span></div>
+        <div class="item"><strong>{{ _('Ausgegeben') }}:</strong> <span class="neg value">{{ ausgegeben }} {{ currency }}</span></div>
+        <div class="item"><strong>{{ _('Verbleibend') }}:</strong> <span class="value">{{ rest }} {{ currency }}</span></div>
+        <div class="item">
+          <strong>{{ _('Übertrag aus Vorwoche') }}:</strong>
+          <span class="value {% if uebertrag >= 0 %}pos{% else %}neg{% endif %}">
+            {% if uebertrag >= 0 %}+{% endif %}{{ uebertrag }} {{ currency }}
+          </span>
+        </div>
+      </div>
+      <p class="hint">✅ {{ _('Übertrag durchgeführt am') }}: <strong>{{ last_transfer | datetimeformat }}</strong></p>
+    </section>
+
+    <!-- Neue Ausgabe -->
+    <section>
+      <form method="post" class="form-narrow stack">
+        <div class="stack">
+          <label for="betrag" class="label">{{ _('Betrag') }} ({{ currency }}):</label>
+          <input type="number" step="0.01" name="betrag" id="betrag" required />
+        </div>
+        <div class="stack">
+          <label for="beschreibung" class="label">{{ _('Beschreibung') }}:</label>
+          <input type="text" name="beschreibung" id="beschreibung" required />
+        </div>
+
+        {% if request.args.get('err') == 'invalid_amount' %}
+          <div class="alert error">⚠️ {{ _('Betrag konnte nicht gelesen werden. Bitte nur Zahlen verwenden (z. B. 12.50).') }}</div>
+        {% endif %}
+
+        <button type="submit" class="btn">➕ {{ _('Ausgabe hinzufügen') }}</button>
+      </form>
+    </section>
+
+    <!-- Ausgaben dieser Woche -->
+    <section>
+      <h3 class="monospace">{{ _('Letzte Ausgaben (diese Woche)') }}</h3>
+
+      {% for eintrag in eintraege %}
+        <div class="entry {% if request.args.get('new_id') == eintrag[0]|string %}new-entry{% endif %}"
+             style="display:flex; align-items:center; gap:12px;">
+          <div style="flex:1">
+            <span style="color:#ccc">{{ eintrag[1] }}</span> –
+            <span class="{% if eintrag[2] >= 0 %}pos{% else %}neg{% endif %} value">{{ eintrag[2] }} {{ currency }}</span>
+            <span class="hint" style="margin-left:10px">{{ eintrag[3] }}</span>
+          </div>
+          <form method="post" action="{{ url_for('delete', id=eintrag[0]) }}">
+            <button type="submit" class="btn btn--ghost del-btn" title="{{ _('Eintrag löschen') }}">🗑️</button>
+          </form>
+        </div>
+      {% endfor %}
+    </section>
+
+    <!-- Wartung -->
+    <section class="maintenance">
+      <div class="maint-header">
+        <span class="maint-icon">⚠️</span>
+        <h3 class="maint-title">{{ _('Wartung & Aufräumen') }}</h3>
+      </div>
+
+      {% if eintraege|length == 0 %}
+        <div class="maint-hint">{{ _('Keine Ausgaben vorhanden.') }}</div>
+      {% endif %}
+
+      <div class="stack-md">
+        <form method="post" action="{{ url_for('clear_expenses') }}"
+              onsubmit="return confirm('{{ _('Alle Ausgaben wirklich löschen?') }}');">
+          <button class="btn btn--soft-danger">🗑️ {{ _('Ausgaben löschen') }}</button>
+        </form>
+
+        <form method="post" action="{{ url_for('clear_budgets') }}"
+              onsubmit="return confirm('{{ _('Alle Budgets/Einstellungen zurücksetzen?') }}');">
+          <button class="btn btn--soft-danger">🧹 {{ _('Alle Budgets löschen') }}</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Komma -> Punkt in Zahlfeldern -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll('form').forEach(function (form) {
+        form.addEventListener("submit", function () {
+          const fields = form.querySelectorAll('input[type="number"]');
+          fields.forEach(f => { if (f.value.includes(",")) f.value = f.value.replace(",", "."); });
+        });
+      });
+    });
+  </script>
+
+  <!-- Sanftes Fade-out beim Löschen einer Ausgabe -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.del-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (ev) {
+          ev.preventDefault();
+          const entry = btn.closest('.entry');
+          const form  = btn.closest('form');
+          if (!entry || !form) { form.submit(); return; }
+          entry.classList.add('is-removing');
+          setTimeout(function () { form.submit(); }, 180);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
