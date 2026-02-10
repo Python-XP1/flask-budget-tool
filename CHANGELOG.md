@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/) and [Sema
 
 ---
 
-## [0.9.3] – 2025-08-17 *(Patreon Exclusive)*
+## [0.9.3] – 2025-08-17
 
 ### Added
 - [DE] Mehrsprachigkeit (Deutsch & Englisch) mit Babel, `.po`- und `.mo`-Dateien  
