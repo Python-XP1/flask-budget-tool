@@ -187,7 +187,7 @@
         <form method="post" action="{{ url_for('clear_expenses') }}"
               onsubmit="return confirm('{{ _('Alle Ausgaben wirklich löschen?') }}');">
         <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
-          <button class="btn btn--soft-danger">🗑️ {{ _('Ausgaben löschen') }}</button>
+          <button type="submit" class="btn btn--soft-danger">🗑️ {{ _('Ausgaben löschen') }}</button>
         </form>
 
         <form method="post" action="{{ url_for('clear_budgets') }}"

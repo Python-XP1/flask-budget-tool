@@ -275,9 +275,13 @@ def delete(id):
 def clear_expenses():
     conn = get_connection()
     cur = conn.cursor()
+    cur.execute("SELECT COUNT(*) FROM ausgaben")
+    row = cur.fetchone()
+    deleted_count = int(row[0]) if row and row[0] is not None else 0
     cur.execute("DELETE FROM ausgaben")
     conn.commit()
     conn.close()
+    flash(_(f"{deleted_count} Ausgaben gelöscht."), "success")
     return redirect(url_for("index"))
 
 @app.route("/clear-budgets", methods=["POST"])
