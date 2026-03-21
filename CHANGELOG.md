@@ -8,6 +8,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/) and [Sema
 
 ---
 
+## [Unreleased] – 2026-03-21
+
+### Added
+- [DE] CSRF-Schutz für alle mutierenden Requests (`POST`, `PUT`, `PATCH`, `DELETE`) inkl. Token in allen Formularen  
+  [EN] CSRF protection for all mutating requests (`POST`, `PUT`, `PATCH`, `DELETE`) including tokens in all forms
+- [DE] Pflichtdokumentation für `FLASK_SECRET_KEY` in der README (Shell und `systemd`)  
+  [EN] Required `FLASK_SECRET_KEY` documentation added to README (shell and `systemd`)
+
+### Changed
+- [DE] App startet nicht mehr mit unsicherem Fallback-Secret, `FLASK_SECRET_KEY` ist jetzt verpflichtend  
+  [EN] App no longer starts with an insecure fallback secret, `FLASK_SECRET_KEY` is now mandatory
+- [DE] `init_db.py` nutzt jetzt ebenfalls `BUDGET_DB_PATH` für konsistente DB-Pfade  
+  [EN] `init_db.py` now also uses `BUDGET_DB_PATH` for consistent DB paths
+
+### Fixed
+- [DE] `/clear-budgets` stabilisiert: `transfer_log` wird vor `DELETE` zuverlässig angelegt  
+  [EN] Stabilized `/clear-budgets`: `transfer_log` is now ensured before `DELETE`
+
+---
+
 ## [0.9.3] – 2025-08-17
 
 ### Added

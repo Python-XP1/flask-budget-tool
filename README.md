@@ -46,12 +46,25 @@ On Windows or macOS manual path adjustments/installation are required.
 
 ### 🚀 Run the tool
 
+`FLASK_SECRET_KEY` is required.
+
+    # One-time for current shell session
+    export FLASK_SECRET_KEY="$(python3 -c 'import secrets; print(secrets.token_urlsafe(48))')"
+
+    # Start app
     python3 app.py
 
 Then open your browser and visit:  
 - Local: http://localhost:5000  
 - From another device in the same network: http://<IP_of_your_Pi/Pc>:5000  
   (example: http://192.168.178.25:5000)
+
+Optional (persist in zsh):
+
+    echo 'export FLASK_SECRET_KEY="your-long-random-key"' >> ~/.zshrc
+    source ~/.zshrc
+
+If you run the app via `systemd`, define the key in an environment file (for example `/etc/default/flask-budget-tool`).
 
 ---
 
@@ -107,12 +120,25 @@ Unter Windows oder macOS ist eine manuelle Anpassung der Pfade/Installation nöt
 
 ### 🚀 Tool starten
 
+`FLASK_SECRET_KEY` ist erforderlich.
+
+    # Einmalig für die aktuelle Shell-Session setzen
+    export FLASK_SECRET_KEY="$(python3 -c 'import secrets; print(secrets.token_urlsafe(48))')"
+
+    # App starten
     python3 app.py
 
 Dann den Browser öffnen und aufrufen:  
 - Lokal: http://localhost:5000  
 - Von einem anderen Gerät im selben Netzwerk: http://<IP_deines_Pi/Pc>:5000  
   (Beispiel: http://192.168.178.25:5000)
+
+Optional (dauerhaft in zsh):
+
+    echo 'export FLASK_SECRET_KEY="dein-langer-zufallsschluessel"' >> ~/.zshrc
+    source ~/.zshrc
+
+Wenn du über `systemd` startest, hinterlege den Key in einer Environment-Datei (z. B. `/etc/default/flask-budget-tool`).
 
 ---
 
