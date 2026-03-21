@@ -75,7 +75,7 @@ def inject_reset_countdown():
         countdown_minutes=(remaining.seconds % 3600) // 60,
         LANGUAGES=get_supported_languages(),
         current_lang=session.get("lang", get_default_locale()),
-        csrf_token=get_csrf_token(),
+        csrf_token=get_csrf_token,
         _=_,
     )
 
@@ -286,13 +286,16 @@ def clear_expenses():
 
 @app.route("/clear-budgets", methods=["POST"])
 def clear_budgets():
+    ensure_settings()
     ensure_transfer_tracking_table()
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("UPDATE einstellungen SET value = 0 WHERE key = 'monatsbudget'")
+    cur.execute("UPDATE einstellungen SET value = NULL WHERE key = 'activated_at'")
     cur.execute("DELETE FROM transfer_log")
     conn.commit()
     conn.close()
+    flash(_("Budgets wurden zurückgesetzt."), "success")
     return redirect(url_for("index"))
 
 if __name__ == "__main__":

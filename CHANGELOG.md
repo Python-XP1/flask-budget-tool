@@ -8,7 +8,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/) and [Sema
 
 ---
 
-## [Unreleased] – 2026-03-21
 
 ### Added
 - [DE] CSRF-Schutz für alle mutierenden Requests (`POST`, `PUT`, `PATCH`, `DELETE`) inkl. Token in allen Formularen  

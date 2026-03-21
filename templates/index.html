@@ -32,7 +32,7 @@
     <section>
       <!-- Monatsbudget -->
       <form method="post" action="{{ url_for('update_budget') }}" class="stack">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <label for="monatsbudget" class="label">📅 {{ _('Monatsbudget') }} ({{ currency }}):</label>
         <div class="grid-2">
           <input type="number" step="0.01" name="monatsbudget" required />
@@ -42,7 +42,7 @@
 
       <!-- Währungsauswahl -->
       <form method="post" action="{{ url_for('update_currency') }}" class="form-row form-row--2" style="margin-top:12px">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <label for="currency" class="label">💱 {{ _('Währung') }}:</label>
         <div class="grid-2">
           <select name="currency" id="currency">
@@ -60,7 +60,7 @@
       <div class="toolbar">
         <!-- Starttag -->
         <form method="post" action="{{ url_for('update_startday') }}" class="form-row form-row--2">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
           <label for="start_day" class="label">📆 {{ _('Starttag des Monats') }}:</label>
           <div class="grid-2">
             <select name="start_day" id="start_day">
@@ -74,7 +74,7 @@
 
         <!-- Endtag -->
         <form method="post" action="{{ url_for('update_endday') }}" class="form-row form-row--2">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
           <label for="end_day" class="label">🏁 {{ _('Endtag des Monats') }}:</label>
           <div class="grid-2">
             <select name="end_day" id="end_day">
@@ -133,8 +133,8 @@
 
     <!-- Neue Ausgabe -->
     <section>
-      <form method="post" class="form-narrow stack">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
+      <form method="post" action="{{ url_for('index') }}" class="form-narrow stack">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <div class="stack">
           <label for="betrag" class="label">{{ _('Betrag') }} ({{ currency }}):</label>
           <input type="number" step="0.01" name="betrag" id="betrag" required />
@@ -165,7 +165,7 @@
             <span class="hint" style="margin-left:10px">{{ eintrag[3] }}</span>
           </div>
           <form method="post" action="{{ url_for('delete', id=eintrag[0]) }}">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             <button type="submit" class="btn btn--ghost del-btn" title="{{ _('Eintrag löschen') }}">🗑️</button>
           </form>
         </div>
@@ -184,20 +184,42 @@
       {% endif %}
 
       <div class="stack-md">
-        <form method="post" action="{{ url_for('clear_expenses') }}"
-              onsubmit="return confirm('{{ _('Alle Ausgaben wirklich löschen?') }}');">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
+        <form method="post" action="{{ url_for('clear_expenses') }}" class="confirm-expenses">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
           <button type="submit" class="btn btn--soft-danger">🗑️ {{ _('Ausgaben löschen') }}</button>
         </form>
 
-        <form method="post" action="{{ url_for('clear_budgets') }}"
-              onsubmit="return confirm('{{ _('Alle Budgets/Einstellungen zurücksetzen?') }}');">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
-          <button class="btn btn--soft-danger">🧹 {{ _('Alle Budgets löschen') }}</button>
+        <form method="post" action="{{ url_for('clear_budgets') }}" class="confirm-budgets">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+          <button type="submit" class="btn btn--soft-danger">🧹 {{ _('Alle Budgets löschen') }}</button>
         </form>
       </div>
     </section>
   </main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // EXPENSES BUTTON
+  document.querySelectorAll(".confirm-expenses button").forEach(btn => {
+    btn.addEventListener("click", function () {
+      if (!confirm("Alle Ausgaben wirklich löschen?")) {
+        return false;
+      }
+    });
+  });
+
+  // BUDGET BUTTON
+  document.querySelectorAll(".confirm-budgets button").forEach(btn => {
+    btn.addEventListener("click", function () {
+      if (!confirm("Alle Budgets/Einstellungen zurücksetzen?")) {
+        return false;
+      }
+    });
+  });
+
+});
+</script>
 
   <!-- Komma -> Punkt in Zahlfeldern -->
   <script>
