@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from datetime import datetime, date
 import os
+import secrets
 from flask_babel import Babel, gettext as _
 from utils.functions import (
     # DB/Settings
@@ -11,14 +12,17 @@ from utils.functions import (
     get_current_month_range, get_next_monday, is_valid_cycle,
     # Aktivierung/Übertrag
     guarded_wochenuebertrag, get_last_week_balance, is_transfer_active,
-    activated_this_week, get_last_transfer_date,
+    activated_this_week, get_last_transfer_date, ensure_transfer_tracking_table,
     # i18n
     get_supported_languages, get_default_locale, get_default_timezone, resolve_locale,
     get_currency_symbol, get_currency_choices,
 )
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
-app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", "dev-only")
+secret_key = os.getenv("FLASK_SECRET_KEY")
+if not secret_key:
+    raise RuntimeError("FLASK_SECRET_KEY muss gesetzt sein.")
+app.config["SECRET_KEY"] = secret_key
 
 print("ROOT_PATH:", app.root_path)
 print("TEMPLATE_SEARCHPATH:", getattr(app.jinja_loader, "searchpath", None))
@@ -40,6 +44,25 @@ babel = Babel(app)
 def get_locale():
     return resolve_locale(request, session)
 
+def get_csrf_token() -> str:
+    token = session.get("_csrf_token")
+    if not token:
+        token = secrets.token_urlsafe(32)
+        session["_csrf_token"] = token
+    return token
+
+def validate_csrf() -> bool:
+    expected = session.get("_csrf_token")
+    provided = request.form.get("csrf_token") or request.headers.get("X-CSRF-Token")
+    return bool(expected and provided and secrets.compare_digest(expected, provided))
+
+@app.before_request
+def protect_against_csrf():
+    if request.method in ("POST", "PUT", "PATCH", "DELETE"):
+        if not validate_csrf():
+            flash(_("Ungültige Anfrage (CSRF). Bitte Seite neu laden."), "error")
+            return redirect(url_for("index"))
+
 # Context (Countdown + i18n-Infos für Templates)
 @app.context_processor
 def inject_reset_countdown():
@@ -52,6 +75,7 @@ def inject_reset_countdown():
         countdown_minutes=(remaining.seconds % 3600) // 60,
         LANGUAGES=get_supported_languages(),
         current_lang=session.get("lang", get_default_locale()),
+        csrf_token=get_csrf_token(),
         _=_,
     )
 
@@ -234,7 +258,7 @@ def index():
         last_transfer=last_transfer_value,
         show_transfer=not activated_this_week(),
         currency=get_currency_symbol(),                 # z.B. "€"
-    currency_choices=get_currency_choices(),        # Liste für Dropdown
+        currency_choices=get_currency_choices(),        # Liste für Dropdown
     )
 
 # ---- Wartung ----
@@ -258,6 +282,7 @@ def clear_expenses():
 
 @app.route("/clear-budgets", methods=["POST"])
 def clear_budgets():
+    ensure_transfer_tracking_table()
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("UPDATE einstellungen SET value = 0 WHERE key = 'monatsbudget'")
