@@ -254,17 +254,17 @@ def reset_wochenbudget():
 
 def guarded_wochenuebertrag():
     if activated_this_week():
-        print("⏭️  Übertrag übersprungen: Aktivierung in dieser Woche.")
+        print("Transfer skipped: activation in current week.")
         return
     ensure_transfer_tracking_table()
     if not is_transfer_active(date.today()):
         return
     if not has_transferred_for_week():
-        print("🔁 Übertrag wird durchgeführt...")
+        print("Running weekly transfer...")
         reset_wochenbudget()
         mark_week_as_transferred()
     else:
-        print("✅ Übertrag für diese Woche wurde bereits gemacht.")
+        print("Weekly transfer already completed.")
 
 def get_last_transfer_date():
     conn = get_connection()
