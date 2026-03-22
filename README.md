@@ -22,6 +22,14 @@ This tool shows you **every day**:
 
 ---
 
+### 🖼️ Preview
+
+<p align="center">
+    <img src="./assets/screenshot.png" width="80%"
+</p>
+
+---
+
 ### ⚡ What makes it different
 
 - 🔒 100% local – your data never leaves your device  
@@ -42,16 +50,6 @@ This tool shows you **every day**:
 
 ⚠️ **Note:** Official support only for Debian-based systems.  
 On Windows or macOS manual setup is required.
-
----
-
----
-
-### 🖼️ Preview
-
-<p align="center">
-    <img src="./assets/screenshot.png" width="80%"
-</p>
 
 ---
 
@@ -124,6 +122,14 @@ Dieses Tool zeigt dir jeden Tag:
 
 ---
 
+### 🖼️ Vorschau
+
+<p align="center">
+    <img src="./assets/screenshot.png" width="30%"
+</p>
+
+---
+
 ### ⚡ Was dieses Tool besonders macht
 
 - 🔒 100% lokal – keine Cloud, keine Datensammlung  
@@ -144,16 +150,6 @@ Dieses Tool zeigt dir jeden Tag:
 
 ⚠️ **Hinweis:** Offizieller Support nur für Debian-basierte Systeme.  
 Windows/macOS benötigen manuelle Anpassungen.
-
----
-
----
-
-### 🖼️ Vorschau
-
-<p align="center">
-    <img src="./assets/screenshot.png" width="30%"
-</p>
 
 ---
 
