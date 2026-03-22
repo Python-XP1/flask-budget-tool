@@ -1,15 +1,38 @@
-# .gitignore
+# === Virtual Environments ===
 venv/
 .venv/
+env/
+
+# === IDE / Editor ===
 .vscode/
+.idea/
+
+# === Python Cache ===
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# === Flask / Runtime ===
+instance/
 *.db
 *.sqlite3
 *.log
 *.bak
 
-# local template backups
-templates/index_bkp.html
+# === Environment / Secrets ===
+.env
+.env.*
+
+# === OS Files ===
+.DS_Store
+Thumbs.db
+
+# === Build / Temp ===
+*.tmp
+*.swp
+
+# === Optional: Backups ===
+*.zip
+*.tar
+*.gz
