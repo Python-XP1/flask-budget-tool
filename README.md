@@ -1,5 +1,9 @@
 # Flask Budget Tool
 
+![Platform](https://img.shields.io/badge/platform-Raspberry%20Pi-blue)
+![Python](https://img.shields.io/badge/python-3.x-green)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+
 🧮 **Control your money like a trader.**
 
 A lightweight, local-first budget tool that gives you **daily control over your spending** — without cloud, subscriptions, or data tracking.
@@ -19,6 +23,8 @@ This tool shows you **every day**:
 - how much you can spend  
 - if you're over budget  
 - whether you're staying in control  
+
+🚀 Get the Pro version -> https://www.patreon.com/PythonXP
 
 ---
 
@@ -119,6 +125,8 @@ Dieses Tool zeigt dir jeden Tag:
 - wie viel du ausgeben darfst  
 - ob du über deinem Budget liegst  
 - ob du dein Geld im Griff hast  
+
+🚀 Pro version -> https://www.patreon.com/PythonXP
 
 ---
 
