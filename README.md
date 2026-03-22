@@ -50,9 +50,7 @@ On Windows or macOS manual setup is required.
 ### 🖼️ Preview
 
 <p align="center">
-  <img src="./assets/screenshot.jpg" width="30%" />
-  <img src="./assets/screenshot2.jpg" width="30%" />
-  <img src="./assets/screenshot3.jpg" width="30%" />
+    <img src="./assets/screenshot.png" width="80%"
 </p>
 
 ---
@@ -154,9 +152,7 @@ Windows/macOS benötigen manuelle Anpassungen.
 ### 🖼️ Vorschau
 
 <p align="center">
-  <img src="./assets/screenshot.jpg" width="30%" />
-  <img src="./assets/screenshot2.jpg" width="30%" />
-  <img src="./assets/screenshot3.jpg" width="30%" />
+    <img src="./assets/screenshot.png" width="30%"
 </p>
 
 ---
