@@ -9,10 +9,10 @@
 
 🧮 **Control your money like a trader.**
 
-> 💡 Built for people who want control — not another finance app.
+> 💡 Built for people who want control not another finance app.
 No cloud. No subscriptions. Just control.
 
-A lightweight, local-first budget tool that gives you **daily control over your spending** — without cloud, subscriptions, or data tracking.
+A lightweight, local-first budget tool that gives you **daily control over your spending** without cloud, subscriptions, or data tracking.
 
 🌍 Languages: [English](#english) | [Deutsch](#deutsch)
 
@@ -21,7 +21,6 @@ A lightweight, local-first budget tool that gives you **daily control over your 
 ## English
 
 ### 💡 Why this tool exists
-
 
 👉 Unlock advanced features & full control
 
@@ -132,6 +131,13 @@ http://www.patreon.com/PythonXP
 
 ### 💡 Warum dieses Tool?
 
+👉 Erweiterte Funktionen & echte Kontrolle freischalten  
+
+🚀 Hol dir die Pro-Version:  
+https://www.patreon.com/PythonXP  
+
+💡 Einmal einrichten. Für immer Kontrolle.
+
 Die meisten Menschen verlieren kein Geld durch große Fehler…  
 sondern durch viele kleine tägliche Entscheidungen.
 
@@ -140,7 +146,6 @@ Dieses Tool zeigt dir jeden Tag:
 - ob du über deinem Budget liegst  
 - ob du dein Geld im Griff hast  
 
-🚀 Pro version -> https://www.patreon.com/PythonXP
 
 ---
 
