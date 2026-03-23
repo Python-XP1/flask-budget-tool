@@ -133,7 +133,7 @@ Dieses Tool zeigt dir jeden Tag:
 ### 🖼️ Vorschau
 
 <p align="center">
-    <img src="./assets/screenshot.png" width="30%"
+    <img src="./assets/screenshot.png" width="80%"
 </p>
 
 ---
