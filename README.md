@@ -3,6 +3,9 @@
 ![Platform](https://img.shields.io/badge/platform-Raspberry%20Pi-blue)
 ![Python](https://img.shields.io/badge/python-3.x-green)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
+![Status](https://img.shields.io/badge/status-active-success)
+
+<br>
 
 🧮 **Control your money like a trader.**
 
