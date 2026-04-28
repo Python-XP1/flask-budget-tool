@@ -59,6 +59,26 @@ This tool shows you **every day**:
 
 ---
 
+## 📦 Download
+
+### 🪟 Windows (Standalone)
+👉 No Python required – just download & run
+
+➡️ https://github.com/Python-XP1/flask-budget-tool/releases/latest/download/budget-tool-windows.zip
+
+---
+
+### 🐧 Debian / Raspberry Pi (Full Package)
+👉 Includes full source + setup for local environment
+
+➡️ https://github.com/Python-XP1/flask-budget-tool/releases/latest/download/budget-tool-debian.zip
+
+---
+
+💡 Both versions run **100% locally** – no cloud, no tracking.
+
+---
+
 ### 🚀 Who this is for
 
 - People who want **real control over their money**
@@ -164,6 +184,26 @@ Dieses Tool zeigt dir jeden Tag:
 - 🔁 Übertrag von Restbudget aus der Vorwoche  
 - 🧠 Fokus auf Disziplin statt Spielerei  
 - ⚡ Extrem leichtgewichtig – perfekt für Raspberry Pi  
+
+---
+
+## 📦 Download
+
+### 🪟 Windows (Standalone)
+👉 Kein Python erforderlich – einfach herunterladen und starten
+
+➡️ https://github.com/Python-XP1/flask-budget-tool/releases/latest/download/budget-tool-windows.zip
+
+---
+
+### 🐧 Debian / Raspberry Pi (Komplettpaket)
+👉 Enthält den vollständigen Source-Code + Setup für lokale Installation
+
+➡️ https://github.com/Python-XP1/flask-budget-tool/releases/latest/download/budget-tool-debian.zip
+
+---
+
+💡 Beide Versionen laufen **100% lokal** – keine Cloud, kein Tracking.
 
 ---
 
