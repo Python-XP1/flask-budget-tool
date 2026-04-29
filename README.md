@@ -1,6 +1,6 @@
 # Flask Budget Tool
 
-![Platform](https://img.shields.io/badge/platform-Raspberry%20Pi-blue)
+![Platform](https://img.shields.io/badge/platform-Raspberry%20Pi%20%7C%20Windows-blue)
 ![Python](https://img.shields.io/badge/python-3.x-green)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 ![Status](https://img.shields.io/badge/status-active-success)
@@ -172,7 +172,7 @@ Dieses Tool zeigt dir jeden Tag:
 ### 🖼️ Vorschau
 
 <p align="center">
-    <img src="./assets/screenshot.png" width="80%"
+    <img src="./assets/screenshot.png" width="80%">
 </p>
 
 ---
